@@ -1,0 +1,160 @@
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #121212;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2e2e2e;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #2563eb;
+}
+
+/* 玻璃拟态效果 */
+.glass-panel {
+    background: rgba(30, 30, 30, 0.6);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* 渐变文字 */
+.text-gradient {
+    background: linear-gradient(to right, #ffffff, #60a5fa);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
+
+.background-grid {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+}
+
+/* 链接样式 */
+a {
+    color: #2563eb; /* 默认蓝色 */
+    transition: color 0.3s ease; /* 添加淡入淡出动画 */
+}
+
+a:hover {
+    color: #ffffff; /* 鼠标悬停时变为白色 */
+}
+
+/* 图片样式 */
+.img-invert {
+    filter: invert(1);
+}
+
+.img-small {
+    height: 1em;
+}
+
+.img-medium {
+    height: 2em;
+}
+
+/* =========================================
+   文章详情页样式 (Typography)
+   作用域限制在 .prose 类下，避免影响页脚和导航
+   ========================================= */
+
+/* H2 标题样式 */
+.prose h2 {
+    font-size: 1.75rem;       /* 较大字号 */
+    font-weight: 700;         /* 加粗 */
+    color: #ffffff;           /* 纯白标题 */
+    margin-top: 2.5rem;       /* 上方留白 */
+    margin-bottom: 1.5rem;    /* 下方留白 */
+    padding-left: 1rem;       /* 左内边距 */
+    border-left: 4px solid #2563eb; /* 左侧品牌蓝装饰线 */
+    line-height: 1.3;
+    position: relative;
+}
+
+/* Blockquote 引用块样式 */
+.prose blockquote {
+    border-left: 4px solid #2563eb;
+    background-color: rgba(255, 255, 255, 0.05); /* 轻微的背景色 */
+    padding: 1rem 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+    color: #d1d5db; /* 浅灰色文字 */
+    border-radius: 0 0.5rem 0.5rem 0; /* 右侧圆角 */
+    position: relative;
+}
+
+/* UL 无序列表样式 */
+.prose ul {
+    list-style-type: disc;    /* 恢复圆点 */
+    padding-left: 1.5rem;     /* 缩进 */
+    margin: 1.5rem 0;
+    color: #d1d5db;
+}
+
+/* LI 列表项样式 */
+.prose li {
+    margin-bottom: 0.5rem;    /* 列表项间距 */
+    line-height: 1.6;
+}
+
+/* 自定义列表标记颜色 (Webkit浏览器支持) */
+.prose ul li::marker {
+    color: #2563eb; /* 品牌蓝圆点 */
+}
+
+/* 兼容性调整：如果父级使用了 text-gray-300，确保 p 标签继承或覆盖 */
+.prose p {
+    margin-bottom: 1.25rem;
+    line-height: 1.75;
+}
+
+/* 定义网格流动的关键帧 */
+@keyframes gridFlow {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        /* 必须与 background-size 的高度一致以实现无缝循环 */
+        background-position: 0 40px; 
+    }
+}
+
+.background-grid {
+    /* 设置网格大小 */
+    background-size: 40px 40px;
+    
+    /* 绘制网格线：水平线和垂直线 
+       0.08 是线条透明度，数值越大越显眼
+    */
+    background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    
+    /* 应用动画：20秒线性无限循环 */
+    animation: gridFlow 3s linear infinite;
+    
+    /* 遮罩：让网格在底部自然淡出，避免切断感 */
+    mask-image: linear-gradient(to bottom, black 30%, transparent 95%);
+    -webkit-mask-image: linear-gradient(to bottom, black 30%, transparent 95%);
+    
+    /* 确保点击事件穿透，不影响下方元素的交互 */
+    pointer-events: none;
+}
