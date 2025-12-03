@@ -246,7 +246,7 @@ const projectsList = [
                                     罗德岛历史与文化办公室
                                 </h1>
                                 <p class="mt-4 max-w-2xl text-xl text-gray-400">
-                                    <em>"Record and Preserve"</em>
+                                    <em>"Research and Preserve"</em>
                                 </p>
                                 <div class="mt-10 flex gap-4">
                                     <button @click="scrollToSection('projects')" class="bg-white text-brand-black px-8 py-3 rounded-lg font-bold hover:bg-gray-200 transition-colors">
