@@ -499,6 +499,16 @@ const projectsList = [
                         </ul>
                     </div>
 
+                    <!-- 3. 快捷链接 -->
+                    <div>
+                        <h3 class="text-white font-bold mb-4">快捷链接</h3>
+                        <ul class="space-y-2 text-sm text-gray-500">
+                            <li><a href="https://wiki.hcaor.org" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-white">综合数据库</a></li>
+                            <li><a href="https://asr.hcaor.org" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-white">ASR Platform</a></li>
+                            <li class="flex items-center gap-2"><a href="https://prts.wiki" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-white">PRTS</a><i class="ph-bold ph-arrow-square-out"></i></li>
+                        </ul>
+                    </div>                    
+
                     <!-- 4. 联系 -->
                     <div>
                         <h3 class="text-white font-bold mb-4">联系</h3>
