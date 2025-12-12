@@ -505,7 +505,7 @@ const projectsList = [
                         <ul class="space-y-2 text-sm text-gray-500">
                             <li><a href="https://wiki.hcaor.org" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-white">综合数据库</a></li>
                             <li><a href="https://asr.hcaor.org" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-white">ASR Platform</a></li>
-                            <li class="flex items-center gap-2"><a href="https://prts.wiki" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-white">PRTS</a><i class="ph-bold ph-arrow-square-out"></i></li>
+                            <li class="flex items-center gap-2"><a href="https://prts.wiki" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-white">PRTS <i class="ph-bold ph-arrow-square-out"></i></a></li>
                         </ul>
                     </div>                    
 
