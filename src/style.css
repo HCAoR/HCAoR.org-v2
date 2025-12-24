@@ -125,14 +125,38 @@ a:hover {
 
 /* Blockquote 引用块样式 */
 .prose blockquote {
-    border-left: 4px solid #2563eb;
-    background-color: rgba(255, 255, 255, 0.05); /* 轻微的背景色 */
-    padding: 1rem 1.5rem;
-    margin: 2rem 0;
-    font-style: italic;
-    color: #d1d5db; /* 浅灰色文字 */
-    border-radius: 0 0.5rem 0.5rem 0; /* 右侧圆角 */
+    border: none;
+    background-color: transparent;
+    padding: 1rem 3rem; /* 左右留出空间给引号 */
+    margin: 3rem 0;
+    font-style: normal;
+    color: #d1d5db;
     position: relative;
+    border-radius: 0;
+}
+
+.prose blockquote::before {
+    content: "“";
+    position: absolute;
+    top: -1rem;
+    left: 0;
+    font-size: 5rem;
+    line-height: 1;
+    color: #2563eb;
+    font-family: Georgia, serif;
+    opacity: 0.8;
+}
+
+.prose blockquote::after {
+    content: "”";
+    position: absolute;
+    bottom: -2.5rem;
+    right: 0;
+    font-size: 5rem;
+    line-height: 1;
+    color: #2563eb;
+    font-family: Georgia, serif;
+    opacity: 0.8;
 }
 
 /* UL 无序列表样式 */
@@ -159,3 +183,282 @@ a:hover {
     margin-bottom: 1.25rem;
     line-height: 1.75;
 }
+
+/* =========================================
+   Print Styles (打印优化)
+   ========================================= */
+@media print {
+    /* 隐藏干扰元素：导航、页脚、背景网格、所有按钮、滚动条 */
+    nav, footer, .background-grid, button, .print\:hidden {
+        display: none !important;
+    }
+
+    /* 强制重置背景和文字颜色，并强制左对齐 */
+    body, #app, main, article {
+        background-color: white !important;
+        color: black !important;
+        background-image: none !important;
+        min-height: auto !important;
+        text-align: left !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* 移除深色模式特有的滤镜或效果 */
+    .glass-panel {
+        backdrop-filter: none !important;
+        background: transparent !important;
+        border: none !important;
+    }
+
+    /* 布局调整：移除居中，强制靠左，但保留合理的右边距以防溢出 */
+    .max-w-4xl, .max-w-7xl, .mx-auto, .container {
+        max-width: 100% !important;
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    /* 强制 Flex 容器左对齐 */
+    .flex, .flex-col, .flex-row, .items-center, .justify-center {
+        justify-content: flex-start !important;
+        align-items: flex-start !important;
+        text-align: left !important;
+    }
+    
+    /* 特殊处理：作者信息区域在打印时不需要太大的 gap */
+    .gap-4, .gap-6, .gap-3 {
+        gap: 0.5rem !important;
+    }
+
+    /* 移除垂直方向的大间距 */
+    .pt-12, .pb-24, .py-24, .mt-8, .mb-8, .mb-12 {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        margin-top: 0.5rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    /* 文章标题优化 */
+    h1 {
+        color: black !important;
+        font-size: 24pt !important;
+        text-align: left !important;
+        margin-bottom: 0.5rem !important;
+        line-height: 1.2 !important;
+    }
+
+    /* 元数据区域优化 */
+    header {
+        text-align: left !important;
+        margin-bottom: 1.5rem !important;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 1rem;
+        display: block !important; /* 解除可能的 flex 影响 */
+    }
+    
+    /* 强制 Header 内部元素块级显示，避免横排挤压 */
+    header > div {
+        display: block !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    /* 图片优化 */
+    img {
+        max-height: 300px !important;
+        width: auto !important; /* 不强制占满宽度 */
+        max-width: 100% !important;
+        object-fit: contain !important; /* 保持比例 */
+        border-radius: 4px !important;
+        margin-bottom: 1rem !important;
+        box-shadow: none !important;
+        border: 1px solid #eee !important;
+        display: block !important;
+        margin-left: 0 !important; /* 确保图片左对齐 */
+    }
+    
+    /* 图片容器左对齐 */
+    .rounded-2xl {
+        border-radius: 0 !important;
+        border: none !important;
+        margin-left: 0 !important;
+    }
+
+    /* 正文排版优化 */
+    .prose {
+        font-size: 11pt !important;
+        line-height: 1.5 !important;
+        color: black !important;
+        max-width: 100% !important;
+    }
+
+    .prose p, .prose li {
+        color: #000 !important;
+        text-align: justify !important; /* 正文两端对齐会整齐一些，或者用 left */
+    }
+
+    .prose h2, .prose h3 {
+        color: black !important;
+        border-left-color: black !important;
+        margin-top: 1.5rem !important;
+        page-break-after: avoid;
+    }
+
+    .prose blockquote {
+        border: none !important;
+        background-color: transparent !important;
+        color: #333 !important;
+        padding: 1rem 3rem !important;
+        font-style: normal !important;
+    }
+
+    .prose blockquote::before,
+    .prose blockquote::after {
+        color: #000 !important;
+        opacity: 0.5 !important;
+    }
+
+    .prose a {
+        color: black !important;
+        text-decoration: underline !important;
+        font-weight: bold;
+    }
+    
+    .prose a::after {
+        content: ' (' attr(href) ')';
+        font-size: 0.8em;
+        font-weight: normal;
+        color: #444;
+    }
+    
+    .prose a[href^='#']::after {
+        content: none !important;
+    }
+}
+
+
+/* =========================================
+   Code Highlight & Styles
+   ========================================= */
+
+/* Thin Style: ���ڴ��� (Inline Code) */
+.prose :not(pre) > code {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #e5e7eb;
+    padding: 0.2em 0.4em;
+    border-radius: 0.25rem; /* Բ�Ƿ��� */
+    font-family: 'Fira Code', 'Consolas', monospace;
+    font-size: 0.875em;
+    font-weight: 500;
+}
+
+/* Block Style: ��������� (Code Block Wrapper) */
+.code-block-wrapper {
+    margin: 1.5rem 0;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background-color: #282c34; /* Atom One Dark ����ɫ */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* �����ͷ�� (Header Bar) */
+.code-block-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: #21252b; /* �ȴ��뱳������ */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-family: sans-serif;
+}
+
+/* ������ʾ */
+.code-language-label {
+    font-size: 0.75rem;
+    color: #abb2bf;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* װ����Բ�� (Mac���ڷ��) */
+.code-dots {
+    display: flex;
+    gap: 0.35rem;
+    margin-right: 0.5rem;
+}
+.code-dot {
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+}
+.code-dot-red { background-color: #ff5f56; }
+.code-dot-yellow { background-color: #ffbd2e; }
+.code-dot-green { background-color: #27c93f; }
+
+/* ���ư�ť */
+.code-copy-btn {
+    background: transparent;
+    border: none;
+    color: #abb2bf;
+    cursor: pointer;
+    font-size: 0.875rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.code-copy-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.code-copy-btn i {
+    font-size: 1rem;
+}
+
+/* ���� highlight.js �� pre ��Ĭ����ʽ������ wrapper ���� */
+.prose pre {
+    margin: 0 !important;
+    border-radius: 0 !important;
+    padding: 1rem !important;
+    background-color: transparent !important; /* ����ɫ�� wrapper �ṩ */
+}
+
+/* ��ӡ�Ż�������� */
+@media print {
+    .code-block-wrapper {
+        border: 1px solid #ccc;
+        background-color: #f5f5f5 !important;
+        page-break-inside: avoid;
+    }
+    .code-block-header {
+        background-color: #eee !important;
+        border-bottom: 1px solid #ccc;
+        color: black !important;
+    }
+    .code-copy-btn {
+        display: none !important;
+    }
+    .prose pre code {
+        color: black !important;
+        text-shadow: none !important;
+    }
+}
+
+
+/* �Ƴ� Tailwind Typography Ĭ�ϵ� code ������ */
+.prose code::before,
+.prose code::after {
+    content: none !important;
+}
+
