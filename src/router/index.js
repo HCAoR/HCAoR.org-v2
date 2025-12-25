@@ -3,6 +3,11 @@ import HomeView from '../views/HomeView.vue';
 import BlogListView from '../views/BlogListView.vue';
 import BlogPostView from '../views/BlogPostView.vue';
 import DemoView from '../views/DemoView.vue';
+import NotFoundView from '../views/NotFoundView.vue';
+import LoginView from '../views/admin/LoginView.vue';
+import AdminLayout from '../views/admin/AdminLayout.vue';
+import AdminPostList from '../views/admin/AdminPostList.vue';
+import AdminPostEditor from '../views/admin/AdminPostEditor.vue';
 
 const routes = [
     {
@@ -24,6 +29,27 @@ const routes = [
         path: '/demo',
         name: 'demo',
         component: DemoView
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: LoginView
+    },
+    {
+        path: '/admin',
+        component: AdminLayout,
+        meta: { requiresAuth: true },
+        children: [
+            { path: '', redirect: '/admin/posts' },
+            { path: 'posts', component: AdminPostList },
+            { path: 'posts/new', component: AdminPostEditor },
+            { path: 'posts/:id/edit', component: AdminPostEditor }
+        ]
+    },
+    {
+        path: '/:pathMatch(.*)*',
+        name: 'not-found',
+        component: NotFoundView
     }
 ];
 
@@ -38,10 +64,24 @@ const router = createRouter({
             return {
                 el: to.hash,
                 behavior: 'smooth',
-                top: 80 // 考虑到固定导航栏的高度
+                top: 80 
             };
         }
         return { top: 0 };
+    }
+});
+
+// 路由守卫
+router.beforeEach((to, from, next) => {
+    if (to.meta.requiresAuth) {
+        const auth = localStorage.getItem('hcaor_auth');
+        if (!auth) {
+            next('/login');
+        } else {
+            next();
+        }
+    } else {
+        next();
     }
 });
 
