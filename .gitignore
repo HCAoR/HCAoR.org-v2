@@ -50,3 +50,5 @@ wrangler.toml
 Thumbs.db
 
 /admin/
+/backend/
+/test/
