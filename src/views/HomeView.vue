@@ -89,14 +89,14 @@ const openPost = (post) => {
                 <div class="flex justify-between items-end mb-12">
                     <div>
                         <h2 class="text-3xl font-bold mb-2">旗下项目</h2>
-                        <p class="text-gray-400">我们正在推行的公益计划与社区项目。</p>
+                        <p class="text-gray-400">我们正在推行的项目。</p>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                     <div class="bg-brand-gray rounded-2xl overflow-hidden border border-white/5 group hover:border-brand-blue/50 transition-all">
                         <div class="h-64 overflow-hidden relative">
-                            <img src="https://assets.hcaor.org/wiki-cover.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="HCAoR General Database Cover">
+                            <img src="https://assets.hcaor.org/wiki-cover.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="封面图锐意制作中，少话，，，">
                             <div class="absolute inset-0 bg-gradient-to-t from-brand-gray to-transparent"></div>
                         </div>
                         <div class="p-8">
