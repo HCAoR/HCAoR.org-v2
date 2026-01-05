@@ -1,5 +1,6 @@
 [![Better Stack Badge](https://uptime.betterstack.com/status-badges/v1/monitor/2ccta.svg)](https://uptime.betterstack.com/?utm_source=status_badge)
 <br>
+[Status Page](https://status.hcaor.org)<br>
 Version 2.0 of HCAoR.org <br>
 Powered by Vue3 (Javascrpit)
 
