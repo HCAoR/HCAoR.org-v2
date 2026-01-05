@@ -1,4 +1,4 @@
-![Website](https://img.shields.io/website?url=https%3A%2F%2Fhcaor.org)
+[![Better Stack Badge](https://uptime.betterstack.com/status-badges/v1/monitor/2ccta.svg)](https://uptime.betterstack.com/?utm_source=status_badge)
 <br>
 Version 2.0 of HCAoR.org <br>
 Powered by Vue3 (Javascrpit)
